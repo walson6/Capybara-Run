@@ -1,0 +1,266 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"59b64c13-71db-452a-b283-e1a4669f2153\" name=\"Changes\" comment=\"\" />\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"ExportToHTMLSettings\">\r\n    <option name=\"OUTPUT_DIRECTORY\" value=\"$PROJECT_DIR$/../PyGame\\exportToHTML\" />\r\n  </component>\r\n  <component name=\"GithubDefaultAccount\">\r\n    <option name=\"defaultAccountId\" value=\"377bcb2f-2a43-42dd-89c5-e8450dd442e9\" />\r\n  </component>\r\n  <component name=\"HighlightingSettingsPerFile\">\r\n    <setting file=\"file://$PROJECT_DIR$/venv/main.py\" root0=\"FORCE_HIGHLIGHTING\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 3\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2Y6qFeQwFW2CkBLGpEBoiHx5fen\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"full.screen.before.presentation.mode\": \"false\",\r\n    \"last_opened_file_path\": \"C:/Users/Jimmy/Documents/PycharmProjects/PyGame\",\r\n    \"settings.editor.selected.configurable\": \"org.jetbrains.plugins.github.ui.GithubSettingsConfigurable\"\r\n  }\r\n}]]></component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"SvnConfiguration\">\r\n    <configuration>C:\\Users\\Jimmy\\AppData\\Roaming\\Subversion</configuration>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"59b64c13-71db-452a-b283-e1a4669f2153\" name=\"Changes\" comment=\"\" />\r\n      <created>1699856274833</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1699856274833</updated>\r\n    </task>\r\n    <servers />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision d91a2e69f5b58d7cdf61496ba92f58dec1cf402d)
++++ b/.idea/workspace.xml	(date 1701720668072)
+@@ -13,6 +13,9 @@
+   <component name="ExportToHTMLSettings">
+     <option name="OUTPUT_DIRECTORY" value="$PROJECT_DIR$/../PyGame\exportToHTML" />
+   </component>
++  <component name="Git.Settings">
++    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
++  </component>
+   <component name="GithubDefaultAccount">
+     <option name="defaultAccountId" value="377bcb2f-2a43-42dd-89c5-e8450dd442e9" />
+   </component>
+@@ -23,6 +26,7 @@
+   &quot;associatedIndex&quot;: 3
+ }</component>
+   <component name="ProjectId" id="2Y6qFeQwFW2CkBLGpEBoiHx5fen" />
++  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+   <component name="ProjectViewState">
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+@@ -32,6 +36,7 @@
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "full.screen.before.presentation.mode": "false",
++    "git-widget-placeholder": "master",
+     "last_opened_file_path": "C:/Users/Jimmy/Documents/PycharmProjects/PyGame",
+     "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+   }
+@@ -50,4 +55,15 @@
+     </task>
+     <servers />
+   </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
++  </component>
+ </project>
+\ No newline at end of file
+Index: venv/main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/venv/main.py b/venv/main.py
+new file mode 100644
+--- /dev/null	(date 1701720136680)
++++ b/venv/main.py	(date 1701720136680)
+@@ -0,0 +1,185 @@
++#TODO
++#-add orange enemies
++#-randomize enemy spawns and speed BUT ALSO BALANCE IT!
++import pygame
++import random
++pygame.init()
++
++###Score (ms since pygame.init())
++def display_score():
++  current_time = int(pygame.time.get_ticks() / 500) - start_time
++  score_surf = font.render(f'Score: {current_time}', False, 'White')
++  score_rect = score_surf.get_rect(center = (500, 53))
++  screen.blit(score_surf, score_rect)
++
++###Game set up
++screen = pygame.display.set_mode((1000, 542))
++clock = pygame.time.Clock()
++font = pygame.font.Font('Minecraft.ttf', 30)
++lostFont = pygame.font.Font('Minecraft.ttf', 50)
++game_active = True
++start_time = 0
++
++###Background model and position
++background_surf = pygame.image.load('background1.png').convert_alpha()
++background_surf = pygame.transform.rotozoom(background_surf,0, 0.5)
++
++background_surf_rect1 = background_surf.get_rect(midbottom = (384,766))
++background_surf_rect2 = background_surf.get_rect(midbottom = (1152,766))
++background_surf_rect3 = background_surf.get_rect(midbottom = (1920,766))
++background_surf_rect4 = background_surf.get_rect(midbottom = (2688,766))
++
++###Ground model and position
++#450 is width of floors
++ground_surface = pygame.image.load('floor2.png').convert_alpha()
++ground_surface = pygame.transform.rotozoom(ground_surface,0, 0.1)
++
++ground_surface_rect1 = ground_surface.get_rect(midbottom = (0, 542))
++ground_surface_rect2 = ground_surface.get_rect(midbottom = (400, 542))
++ground_surface_rect3 = ground_surface.get_rect(midbottom = (800, 542))
++ground_surface_rect4 = ground_surface.get_rect(midbottom = (1200, 542))
++
++###Enemey model and position
++enemy = pygame.image.load('capyhole.png').convert_alpha()
++enemy = pygame.transform.rotozoom(enemy,0, 0.035)
++enemy_rect = enemy.get_rect(bottomleft = (1000, 403))
++
++enemy1 = pygame.image.load('orange1.png').convert_alpha()
++enemy1 = pygame.transform.rotozoom(enemy1,0, 0.07)
++enemy_rect1 = enemy1.get_rect(bottomleft = (1000, 200))
++
++###Player model and position
++player = pygame.image.load('capybara1.png').convert_alpha()
++player = pygame.transform.rotozoom(player,0, 0.1)
++player1 = pygame.image.load('capybara2.png').convert_alpha()
++player1 = pygame.transform.rotozoom(player1,0, 0.1)
++
++player_rect = player.get_rect(midbottom = (85,385))
++player_rect1 = player1.get_rect(midbottom = (85,385))
++player_gravity = 0
++randomSpeed = random.randint(12,18)
++
++###Game loop
++while True:
++  ###Update screen to remove "echos"
++  screen.fill((	135, 206, 235))
++
++  for event in pygame.event.get():
++    if event.type == pygame.QUIT:
++      pygame.quit()
++      exit()
++    ###Press space to jump (player jump and gravity)
++    if game_active == True:
++      if event.type == pygame.KEYDOWN:
++          if event.key == pygame.K_SPACE and player_rect.bottom >= 385:
++            player_gravity = -22 #increase for jump height
++    ###Press space to restart
++    else:
++      if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
++        game_active = True
++        enemy_rect.left = 1000
++        enemy_rect1.left = 1000
++        start_time = int(pygame.time.get_ticks() / 500)
++
++  ###Active game
++  if game_active:
++    background_surf_rect1.x -= 9
++    if background_surf_rect1.right <= 0:
++      background_surf_rect1.left = 1000
++    screen.blit(background_surf, background_surf_rect1)
++    background_surf_rect2.x -= 9
++    if background_surf_rect2.right <= 0:
++      background_surf_rect2.left = 1000
++    screen.blit(background_surf, background_surf_rect2)
++    background_surf_rect3.x -= 9
++    if background_surf_rect3.right <= 0:
++      background_surf_rect3.left = 1000
++    screen.blit(background_surf, background_surf_rect3)
++    background_surf_rect4.x -= 9
++    if background_surf_rect4.right <= 0:
++      background_surf_rect4.left = 1000
++    screen.blit(background_surf, background_surf_rect4)
++
++    ground_surface_rect1.x -= 9
++    if ground_surface_rect1.right <= 0:
++      ground_surface_rect1.left = 1000
++    screen.blit(ground_surface, ground_surface_rect1)
++    ground_surface_rect2.x -= 9
++    if ground_surface_rect2.right <= 0:
++      ground_surface_rect2.left = 1000
++    screen.blit(ground_surface, ground_surface_rect2)
++    ground_surface_rect3.x -= 9
++    if ground_surface_rect3.right <= 0:
++      ground_surface_rect3.left = 1000
++    screen.blit(ground_surface, ground_surface_rect3)
++    ground_surface_rect4.x -= 9
++    if ground_surface_rect4.right <= 0:
++      ground_surface_rect4.left = 1000
++    screen.blit(ground_surface, ground_surface_rect4)
++
++    ###Enemy movement and display
++    enemy_rect.x -= 9
++    if enemy_rect.right <= 0:
++      enemy_rect.left = 1000
++    screen.blit(enemy, enemy_rect)
++
++    enemy_rect1.x -= randomSpeed
++    if enemy_rect1.right <= 0:
++      enemy_rect1.left = 1000
++      randomSpeed = random.randint(12, 18)
++    screen.blit(enemy1, enemy_rect1)
++
++    ###Player movement and display
++    player_gravity += 0.9 #increase for more gravity
++    player_rect.y += player_gravity
++    if player_rect.bottom >= 385:
++      player_rect.bottom = 385
++
++    player_rect1.y += player_gravity
++    if player_rect1.bottom >= 385:
++      player_rect1.bottom = 385
++    screen.blit(player1, player_rect1)
++
++    ###Player animation
++    if ((pygame.time.get_ticks() - start_time)) % 2 == 1 and player_rect1.bottom >= 385:
++      screen.blit(player, player_rect)
++    elif ((pygame.time.get_ticks() - start_time)) % 2 == 2:
++      screen.blit(player1, player_rect1)
++
++    ###Collision
++    if enemy_rect.colliderect(player_rect) or enemy_rect.colliderect(player_rect1) or enemy_rect1.colliderect(player_rect) or enemy_rect1.colliderect(player_rect1):
++      game_active = False
++    if enemy_rect1.colliderect(player_rect) or enemy_rect1.colliderect(player_rect1):
++      game_active = False
++
++    display_score()
++    pygame.display.update()
++    lastScore = int(pygame.time.get_ticks() / 500) - start_time
++  ###Lost screen
++  else:
++    screen.fill((135, 206, 235))
++    screen.blit(background_surf, background_surf_rect1)
++    screen.blit(background_surf, background_surf_rect2)
++    screen.blit(background_surf, background_surf_rect3)
++    screen.blit(background_surf, background_surf_rect4)
++    screen.blit(ground_surface, ground_surface_rect1)
++    screen.blit(ground_surface, ground_surface_rect2)
++    screen.blit(ground_surface, ground_surface_rect3)
++    screen.blit(ground_surface, ground_surface_rect4)
++
++    endMessage_surf = lostFont.render("You lost!", False, 'White')
++    endMessage_rect = endMessage_surf.get_rect(center=(500, 170))
++    endMessage_surf1 = lostFont.render("Press space to try again", False, 'White')
++    endMessage_rect1 = endMessage_surf1.get_rect(center=(500, 230))
++    scoreMessage_surf = lostFont.render(f"Your score: {lastScore}", False, 'White')
++    scoreMessage_rect = scoreMessage_surf.get_rect(center=(500, 295))
++
++    screen.blit(enemy, enemy_rect)
++    screen.blit(enemy1, enemy_rect1)
++    screen.blit(player, player_rect)
++    screen.blit(endMessage_surf, endMessage_rect)
++    screen.blit(endMessage_surf1, endMessage_rect1)
++    screen.blit(scoreMessage_surf, scoreMessage_rect)
++    pygame.display.update()
++
++  clock.tick(60)
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1701720428730)
++++ b/.idea/vcs.xml	(date 1701720428730)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="$PROJECT_DIR$" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
