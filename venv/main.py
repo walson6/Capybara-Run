@@ -1,5 +1,4 @@
 #TODO
-#-add orange enemies
 #-randomize enemy spawns and speed BUT ALSO BALANCE IT!
 import pygame
 import random
@@ -7,7 +6,7 @@ pygame.init()
 
 ###Score (ms since pygame.init())
 def display_score():
-  current_time = int(pygame.time.get_ticks() / 500) - start_time
+  current_time = int(pygame.time.get_ticks() / 1000) - start_time
   score_surf = font.render(f'Score: {current_time}', False, 'White')
   score_rect = score_surf.get_rect(center = (500, 53))
   screen.blit(score_surf, score_rect)
@@ -39,14 +38,18 @@ ground_surface_rect2 = ground_surface.get_rect(midbottom = (400, 542))
 ground_surface_rect3 = ground_surface.get_rect(midbottom = (800, 542))
 ground_surface_rect4 = ground_surface.get_rect(midbottom = (1200, 542))
 
+###Jump sound effect
+jump_noise = pygame.mixer.Sound('JumpEffect.wav')
+
 ###Enemey model and position
 enemy = pygame.image.load('capyhole.png').convert_alpha()
 enemy = pygame.transform.rotozoom(enemy,0, 0.035)
-enemy_rect = enemy.get_rect(bottomleft = (1000, 403))
+enemy_rect = enemy.get_rect(bottomleft = (1200, 403))
 
-enemy1 = pygame.image.load('orange1.png').convert_alpha()
-enemy1 = pygame.transform.rotozoom(enemy1,0, 0.07)
-enemy_rect1 = enemy1.get_rect(bottomleft = (1000, 200))
+oranges = ["orange1.png","orange2.png","orange3.png"]
+enemy1 = pygame.image.load(random.choice(oranges)).convert_alpha()
+enemy1 = pygame.transform.rotozoom(enemy1,0, 0.065)
+enemy_rect1 = enemy1.get_rect(bottomleft = (1800, 200))
 
 ###Player model and position
 player = pygame.image.load('capybara1.png').convert_alpha()
@@ -57,7 +60,7 @@ player1 = pygame.transform.rotozoom(player1,0, 0.1)
 player_rect = player.get_rect(midbottom = (85,385))
 player_rect1 = player1.get_rect(midbottom = (85,385))
 player_gravity = 0
-randomSpeed = random.randint(12,18)
+randomSpeed = random.randint(13,17)
 
 ###Game loop
 while True:
@@ -68,18 +71,19 @@ while True:
     if event.type == pygame.QUIT:
       pygame.quit()
       exit()
-    ###Press space to jump (player jump and gravity)
+    ###Press space to jump (player jump action and height)
     if game_active == True:
       if event.type == pygame.KEYDOWN:
           if event.key == pygame.K_SPACE and player_rect.bottom >= 385:
-            player_gravity = -22 #increase for jump height
+            player_gravity = -17 #increase for jump height
+            jump_noise.play()
     ###Press space to restart
     else:
       if event.type == pygame.KEYDOWN and event.key == pygame.K_SPACE:
         game_active = True
         enemy_rect.left = 1000
         enemy_rect1.left = 1000
-        start_time = int(pygame.time.get_ticks() / 500)
+        start_time = int(pygame.time.get_ticks() / 1000)
 
   ###Active game
   if game_active:
@@ -120,17 +124,19 @@ while True:
     ###Enemy movement and display
     enemy_rect.x -= 9
     if enemy_rect.right <= 0:
-      enemy_rect.left = 1000
+      enemy_rect.left = 1700
     screen.blit(enemy, enemy_rect)
 
     enemy_rect1.x -= randomSpeed
-    if enemy_rect1.right <= 0:
-      enemy_rect1.left = 1000
-      randomSpeed = random.randint(12, 18)
+    if enemy_rect1.right <= -100:
+      enemy1 = pygame.image.load(random.choice(oranges)).convert_alpha()
+      enemy1 = pygame.transform.rotozoom(enemy1, 0, 0.065)
+      enemy_rect1.left = 1300
+      randomSpeed = random.randint(13, 17)
     screen.blit(enemy1, enemy_rect1)
 
-    ###Player movement and display
-    player_gravity += 0.9 #increase for more gravity
+    ###Player movement, display, and gravity
+    player_gravity += 0.7 #increase for more gravity
     player_rect.y += player_gravity
     if player_rect.bottom >= 385:
       player_rect.bottom = 385
@@ -154,7 +160,7 @@ while True:
 
     display_score()
     pygame.display.update()
-    lastScore = int(pygame.time.get_ticks() / 500) - start_time
+    lastScore = int(pygame.time.get_ticks() / 1000) - start_time
   ###Lost screen
   else:
     screen.fill((135, 206, 235))
